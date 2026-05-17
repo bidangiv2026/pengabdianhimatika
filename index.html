@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengabdian HIMATIKA – HIMATIKA UNS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #0B1F4A;
+      --blue:    #1A56B0;
+      --sky:     #3A87D4;
+      --gold:    #F5C400;
+      --amber:   #E8A800;
+      --red:     #C0392B;
+      --cream:   #FFF9EC;
+      --white:   #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── Background decoration ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(26,86,176,.55) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(245,196,0,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 5% 95%,  rgba(192,57,43,.10) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating geometric shapes */
+    .bg-shapes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.07;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+    .shape-1 { width: 420px; height: 420px; background: var(--gold);  top: -120px; right: -120px; animation-duration: 22s; }
+    .shape-2 { width: 280px; height: 280px; background: var(--blue);  bottom: 60px; left: -80px;  animation-duration: 18s; animation-delay: -8s; }
+    .shape-3 { width: 160px; height: 160px; background: var(--red);   top: 40%;    right: 8%;    animation-duration: 25s; animation-delay: -4s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) rotate(0deg); }
+      to   { transform: translate(30px, 20px) rotate(15deg); }
+    }
+
+    /* Grid overlay */
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Page wrapper ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 20px 64px;
+    }
+
+    /* ── Logo / Badge ── */
+    .badge {
+      width: 96px;
+      height: 96px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      box-shadow:
+        0 0 0 6px rgba(245,196,0,.15),
+        0 8px 32px rgba(0,0,0,.45);
+      animation: pop-in .6s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .badge svg { width: 52px; height: 52px; }
+
+    /* ── Header text ── */
+    .header { text-align: center; animation: slide-up .7s .1s cubic-bezier(.22,1,.36,1) both; }
+
+    .tag-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,196,0,.12);
+      border: 1px solid rgba(245,196,0,.35);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .tag-line .dot {
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .5; transform: scale(.7); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      background: linear-gradient(135deg, var(--white) 40%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,.55);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .org {
+      font-size: 13px;
+      color: rgba(255,255,255,.35);
+      letter-spacing: .06em;
+      margin-bottom: 40px;
+    }
+    .org span { color: var(--sky); }
+
+    /* ── Divider ── */
+    .divider {
+      width: 240px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,196,0,.4), transparent);
+      margin: 0 auto 40px;
+      animation: slide-up .7s .2s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    /* ── Link cards ── */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 22px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+      cursor: pointer;
+      animation: slide-up .6s cubic-bezier(.22,1,.36,1) both;
+    }
+    .link-card:nth-child(1) { animation-delay: .25s; }
+    .link-card:nth-child(2) { animation-delay: .35s; }
+    .link-card:nth-child(3) { animation-delay: .45s; }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    .link-card:hover { transform: translateY(-4px) scale(1.02); }
+    .link-card:hover::before { opacity: 1; }
+    .link-card:active { transform: translateY(0) scale(.98); }
+
+    /* Card 1 – Pendaftaran (blue) */
+    .card-1 {
+      background: linear-gradient(135deg, rgba(26,86,176,.6) 0%, rgba(11,31,74,.8) 100%);
+      border: 1.5px solid rgba(58,135,212,.45);
+      box-shadow: 0 4px 24px rgba(26,86,176,.25), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .card-1::before { background: linear-gradient(135deg, rgba(26,86,176,.85) 0%, rgba(11,31,74,.95) 100%); }
+    .card-1:hover { box-shadow: 0 12px 40px rgba(26,86,176,.5), 0 0 0 1px rgba(58,135,212,.7); }
+
+    /* Card 2 – Guidebook (gold) */
+    .card-2 {
+      background: linear-gradient(135deg, rgba(245,196,0,.18) 0%, rgba(232,168,0,.08) 100%);
+      border: 1.5px solid rgba(245,196,0,.4);
+      box-shadow: 0 4px 24px rgba(245,196,0,.12), inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .card-2::before { background: linear-gradient(135deg, rgba(245,196,0,.28) 0%, rgba(232,168,0,.15) 100%); }
+    .card-2:hover { box-shadow: 0 12px 40px rgba(245,196,0,.25), 0 0 0 1px rgba(245,196,0,.6); }
+
+    /* Card 3 – Berkas (red-accent) */
+    .card-3 {
+      background: linear-gradient(135deg, rgba(192,57,43,.25) 0%, rgba(11,31,74,.85) 100%);
+      border: 1.5px solid rgba(192,57,43,.4);
+      box-shadow: 0 4px 24px rgba(192,57,43,.15), inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .card-3::before { background: linear-gradient(135deg, rgba(192,57,43,.4) 0%, rgba(11,31,74,.95) 100%); }
+    .card-3:hover { box-shadow: 0 12px 40px rgba(192,57,43,.35), 0 0 0 1px rgba(192,57,43,.65); }
+
+    /* Icon wrapper */
+    .icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .card-1 .icon-wrap { background: rgba(58,135,212,.25); border: 1px solid rgba(58,135,212,.35); }
+    .card-2 .icon-wrap { background: rgba(245,196,0,.2);  border: 1px solid rgba(245,196,0,.35); }
+    .card-3 .icon-wrap { background: rgba(192,57,43,.22); border: 1px solid rgba(192,57,43,.35); }
+
+    .icon-wrap svg { width: 24px; height: 24px; }
+
+    /* Card text */
+    .card-text { flex: 1; }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: .01em;
+      margin-bottom: 3px;
+    }
+    .card-desc {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* Arrow */
+    .arrow {
+      opacity: .4;
+      transition: opacity .2s, transform .2s;
+      flex-shrink: 0;
+    }
+    .link-card:hover .arrow { opacity: 1; transform: translateX(4px); }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 52px;
+      text-align: center;
+      animation: slide-up .6s .55s cubic-bezier(.22,1,.36,1) both;
+    }
+    .footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,.28);
+      letter-spacing: .04em;
+    }
+    .footer p span { color: rgba(245,196,0,.5); }
+
+    /* ── Animations ── */
+    @keyframes pop-in {
+      from { opacity: 0; transform: scale(.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .badge { width: 80px; height: 80px; }
+      .badge svg { width: 42px; height: 42px; }
+      .link-card { padding: 15px 18px; gap: 14px; }
+      .icon-wrap { width: 42px; height: 42px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="grid-overlay"></div>
+
+  <main class="page">
+
+    <!-- Badge / Logo -->
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sigma symbol -->
+        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+              font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#F5C400">Σ</text>
+      </svg>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="tag-line">
+        <span class="dot"></span>
+        HIMATIKA UNS
+      </div>
+      <h1>Pengabdian<br/>HIMATIKA</h1>
+      <p class="subtitle">Program Pengabdian Masyarakat</p>
+      <p class="org">Himpunan Mahasiswa Matematika &nbsp;·&nbsp; <span>UNS</span></p>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- Link Cards -->
+    <nav class="links" aria-label="Tautan utama">
+
+      <!-- 1. Pendaftaran -->
+      <a href="#" class="link-card card-1" aria-label="Pendaftaran Pengabdian HIMATIKA">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3A87D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/>
+            <path d="M15.5 2.5a2.121 2.121 0 013 3L12 12l-4 1 1-4 6.5-6.5z"/>
+          </svg>
+        </div>
+        <div class="card-text">
+          <div class="card-title">Pendaftaran</div>
+          <div class="card-desc">Daftar sebagai peserta Pengabdian HIMATIKA</div>
+        </div>
+        <svg class="arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M5 10h10M11 6l4 4-4 4"/>
+        </svg>
+      </a>
+
+      <!-- 2. Guidebook -->
+      <a href="#" class="link-card card-2" aria-label="Guidebook Pengabdian HIMATIKA">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F5C400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            <line x1="9" y1="7" x2="15" y2="7"/>
+            <line x1="9" y1="11" x2="15" y2="11"/>
+          </svg>
+        </div>
+        <div class="card-text">
+          <div class="card-title">Guidebook</div>
+          <div class="card-desc">Panduan lengkap kegiatan Pengabdian HIMATIKA</div>
+        </div>
+        <svg class="arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M5 10h10M11 6l4 4-4 4"/>
+        </svg>
+      </a>
+
+      <!-- 3. Berkas Pendaftaran -->
+      <a href="#" class="link-card card-3" aria-label="Berkas Pendaftaran Pengabdian HIMATIKA">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E05A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="9" y1="13" x2="15" y2="13"/>
+            <line x1="9" y1="17" x2="13" y2="17"/>
+          </svg>
+        </div>
+        <div class="card-text">
+          <div class="card-title">Berkas Pendaftaran</div>
+          <div class="card-desc">Unduh template & berkas yang dibutuhkan</div>
+        </div>
+        <svg class="arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <path d="M5 10h10M11 6l4 4-4 4"/>
+        </svg>
+      </a>
+
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 <span>HIMATIKA UNS</span> &nbsp;·&nbsp; Himpunan Mahasiswa Matematika</p>
+      <p style="margin-top:6px;">Universitas Sebelas Maret</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>
