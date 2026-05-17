@@ -12,9 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy:    #0B1F4A;
-      --blue:    #1A56B0;
-      --sky:     #3A87D4;
+      --navy:    #1A3A6E;
+      --blue:    #2563C0;
+      --sky:     #5BA8E8;
+      --light:   #3B6FBF;
       --gold:    #F5C400;
       --amber:   #E8A800;
       --red:     #C0392B;
@@ -26,7 +27,7 @@
 
     body {
       min-height: 100vh;
-      background-color: var(--navy);
+      background-color: #2756A8;
       font-family: 'DM Sans', sans-serif;
       color: var(--white);
       overflow-x: hidden;
@@ -39,9 +40,10 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(26,86,176,.55) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(245,196,0,.12) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 30% at 5% 95%,  rgba(192,57,43,.10) 0%, transparent 60%);
+        radial-gradient(ellipse 90% 65% at 50% -5%,  #5B9FE8 0%, transparent 65%),
+        radial-gradient(ellipse 55% 45% at 90% 85%,  rgba(245,196,0,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 35% at 5%  95%,  rgba(192,57,43,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 15% 20%,  #3A7FD4 0%, transparent 55%);
       pointer-events: none;
       z-index: 0;
     }
@@ -57,12 +59,12 @@
     .shape {
       position: absolute;
       border-radius: 50%;
-      opacity: 0.07;
       animation: drift 20s ease-in-out infinite alternate;
     }
-    .shape-1 { width: 420px; height: 420px; background: var(--gold);  top: -120px; right: -120px; animation-duration: 22s; }
-    .shape-2 { width: 280px; height: 280px; background: var(--blue);  bottom: 60px; left: -80px;  animation-duration: 18s; animation-delay: -8s; }
-    .shape-3 { width: 160px; height: 160px; background: var(--red);   top: 40%;    right: 8%;    animation-duration: 25s; animation-delay: -4s; }
+    .shape-1 { width: 500px; height: 500px; background: #6AADEE; opacity: .18; top: -160px; right: -140px; animation-duration: 22s; }
+    .shape-2 { width: 320px; height: 320px; background: #4A90D9; opacity: .15; bottom: 40px; left: -100px; animation-duration: 18s; animation-delay: -8s; }
+    .shape-3 { width: 180px; height: 180px; background: var(--red);   opacity: .10; top: 40%; right: 8%; animation-duration: 25s; animation-delay: -4s; }
+    .shape-4 { width: 260px; height: 260px; background: var(--gold);  opacity: .08; bottom: 20%; left: 30%; animation-duration: 30s; animation-delay: -12s; }
 
     @keyframes drift {
       from { transform: translate(0, 0) rotate(0deg); }
@@ -74,8 +76,8 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
       background-size: 48px 48px;
       pointer-events: none;
       z-index: 0;
@@ -93,18 +95,18 @@
       padding: 48px 20px 64px;
     }
 
-    /* ── Logo / Badge ── */
+    /* ── Logo / Badge (KOTAK LENGKUNG) ── */
     .badge {
-      width: 110px;
-      height: 110px;
-      background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+      width: 104px;
+      height: 104px;
+      background: linear-gradient(135deg, rgba(255,255,255,.18) 0%, rgba(37,99,192,.5) 100%);
       border: 3px solid var(--gold);
-      border-radius: 22px;
+      border-radius: 20px; /* Mengubah bulat 50% menjadi kotak tumpul halus */
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 28px;
-      overflow: hidden;
+      overflow: hidden; /* Memotong ujung gambar agar mengikuti lekukan bingkai */
       box-shadow:
         0 0 0 6px rgba(245,196,0,.15),
         0 8px 32px rgba(0,0,0,.45);
@@ -164,11 +166,11 @@
 
     .org {
       font-size: 13px;
-      color: rgba(255,255,255,.35);
+      color: rgba(255,255,255,.5);
       letter-spacing: .06em;
       margin-bottom: 40px;
     }
-    .org span { color: var(--sky); }
+    .org span { color: #A8D4FF; }
 
     /* ── Divider ── */
     .divider {
@@ -219,30 +221,33 @@
 
     /* Card 1 – Pendaftaran (blue) */
     .card-1 {
-      background: linear-gradient(135deg, rgba(26,86,176,.6) 0%, rgba(11,31,74,.8) 100%);
-      border: 1.5px solid rgba(58,135,212,.45);
-      box-shadow: 0 4px 24px rgba(26,86,176,.25), inset 0 1px 0 rgba(255,255,255,.08);
+      background: linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(37,99,192,.35) 100%);
+      border: 1.5px solid rgba(255,255,255,.35);
+      box-shadow: 0 4px 24px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.2);
+      backdrop-filter: blur(6px);
     }
-    .card-1::before { background: linear-gradient(135deg, rgba(26,86,176,.85) 0%, rgba(11,31,74,.95) 100%); }
-    .card-1:hover { box-shadow: 0 12px 40px rgba(26,86,176,.5), 0 0 0 1px rgba(58,135,212,.7); }
+    .card-1::before { background: linear-gradient(135deg, rgba(255,255,255,.32) 0%, rgba(37,99,192,.5) 100%); }
+    .card-1:hover { box-shadow: 0 12px 40px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.5); }
 
     /* Card 2 – Guidebook (gold) */
     .card-2 {
-      background: linear-gradient(135deg, rgba(245,196,0,.18) 0%, rgba(232,168,0,.08) 100%);
-      border: 1.5px solid rgba(245,196,0,.4);
-      box-shadow: 0 4px 24px rgba(245,196,0,.12), inset 0 1px 0 rgba(255,255,255,.06);
+      background: linear-gradient(135deg, rgba(245,196,0,.22) 0%, rgba(37,99,192,.3) 100%);
+      border: 1.5px solid rgba(245,196,0,.5);
+      box-shadow: 0 4px 24px rgba(245,196,0,.15), inset 0 1px 0 rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
     }
-    .card-2::before { background: linear-gradient(135deg, rgba(245,196,0,.28) 0%, rgba(232,168,0,.15) 100%); }
-    .card-2:hover { box-shadow: 0 12px 40px rgba(245,196,0,.25), 0 0 0 1px rgba(245,196,0,.6); }
+    .card-2::before { background: linear-gradient(135deg, rgba(245,196,0,.35) 0%, rgba(37,99,192,.4) 100%); }
+    .card-2:hover { box-shadow: 0 12px 40px rgba(245,196,0,.3), 0 0 0 1px rgba(245,196,0,.7); }
 
     /* Card 3 – Berkas (red-accent) */
     .card-3 {
-      background: linear-gradient(135deg, rgba(192,57,43,.25) 0%, rgba(11,31,74,.85) 100%);
-      border: 1.5px solid rgba(192,57,43,.4);
-      box-shadow: 0 4px 24px rgba(192,57,43,.15), inset 0 1px 0 rgba(255,255,255,.06);
+      background: linear-gradient(135deg, rgba(192,57,43,.28) 0%, rgba(37,99,192,.35) 100%);
+      border: 1.5px solid rgba(192,57,43,.45);
+      box-shadow: 0 4px 24px rgba(192,57,43,.15), inset 0 1px 0 rgba(255,255,255,.1);
+      backdrop-filter: blur(6px);
     }
-    .card-3::before { background: linear-gradient(135deg, rgba(192,57,43,.4) 0%, rgba(11,31,74,.95) 100%); }
-    .card-3:hover { box-shadow: 0 12px 40px rgba(192,57,43,.35), 0 0 0 1px rgba(192,57,43,.65); }
+    .card-3::before { background: linear-gradient(135deg, rgba(192,57,43,.45) 0%, rgba(37,99,192,.5) 100%); }
+    .card-3:hover { box-shadow: 0 12px 40px rgba(192,57,43,.35), 0 0 0 1px rgba(192,57,43,.7); }
 
     /* Icon wrapper */
     .icon-wrap {
@@ -254,7 +259,7 @@
       justify-content: center;
       flex-shrink: 0;
     }
-    .card-1 .icon-wrap { background: rgba(58,135,212,.25); border: 1px solid rgba(58,135,212,.35); }
+    .card-1 .icon-wrap { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.3); }
     .card-2 .icon-wrap { background: rgba(245,196,0,.2);  border: 1px solid rgba(245,196,0,.35); }
     .card-3 .icon-wrap { background: rgba(192,57,43,.22); border: 1px solid rgba(192,57,43,.35); }
 
@@ -271,7 +276,7 @@
     .card-desc {
       font-size: 12px;
       font-weight: 400;
-      color: rgba(255,255,255,.5);
+      color: rgba(255,255,255,.6);
     }
 
     /* Arrow */
@@ -290,10 +295,10 @@
     }
     .footer p {
       font-size: 12px;
-      color: rgba(255,255,255,.28);
+      color: rgba(255,255,255,.38);
       letter-spacing: .04em;
     }
-    .footer p span { color: rgba(245,196,0,.5); }
+    .footer p span { color: rgba(245,196,0,.65); }
 
     /* ── Animations ── */
     @keyframes pop-in {
@@ -307,7 +312,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 480px) {
-      .badge { width: 90px; height: 90px; border-radius: 18px; }
+      .badge { width: 88px; height: 88px; border-radius: 16px; }
       .link-card { padding: 15px 18px; gap: 14px; }
       .icon-wrap { width: 42px; height: 42px; }
     }
@@ -319,6 +324,7 @@
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
     <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
   </div>
   <div class="grid-overlay"></div>
 
@@ -344,7 +350,7 @@
 
       <a href="#" class="link-card card-1" aria-label="Pendaftaran Pengabdian HIMATIKA">
         <div class="icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3A87D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/>
             <path d="M15.5 2.5a2.121 2.121 0 013 3L12 12l-4 1 1-4 6.5-6.5z"/>
           </svg>
@@ -378,7 +384,7 @@
 
       <a href="#" class="link-card card-3" aria-label="Berkas Pendaftaran Pengabdian HIMATIKA">
         <div class="icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#E05A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF8070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
             <polyline points="14 2 14 8 20 8"/>
             <line x1="9" y1="13" x2="15" y2="13"/>
